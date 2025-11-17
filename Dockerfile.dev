@@ -13,6 +13,13 @@ COPY package.json package-lock.json* ./
 # install deps (use npm ci for reproducible install)
 RUN npm ci --silent
 
+# ← TAMBAH INI: Copy tailwind & postcss config
+COPY tailwind.config.js postcss.config.js ./
+
+# ← TAMBAH INI: Copy src untuk build initial Tailwind
+COPY src ./src
+COPY index.html ./
+
 # Expose Vite default port
 EXPOSE 5173
 

@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../assets/Logo.png";
 
-// --- [BARU] Icon untuk Hamburger dan Close ---
+// --- Icon untuk Hamburger dan Close ---
 const HamburgerIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@ const CloseIcon = () => (
   </svg>
 );
 
-// --- Item Navigasi (Tidak Berubah) ---
+// --- Item Navigasi ---
 const NAV_ITEMS = [
   { label: "Beranda", href: "#home" },
   {
@@ -70,24 +70,24 @@ export default function NavBar({ useRouter = false }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef(null);
 
-  // --- [BARU] State untuk menu mobile ---
+  // State untuk menu mobile
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // --- [BARU] State untuk accordion di dalam menu mobile ---
+  // State untuk accordion di dalam menu mobile
   const [mobileAccordionIdx, setMobileAccordionIdx] = useState(null);
 
-  // --- [UPDATE] useEffect untuk 'Escape' key ---
+  // useEffect untuk 'Escape' key
   useEffect(() => {
     function onKey(e) {
       if (e.key === "Escape") {
-        setOpenIdx(null); // Tutup dropdown desktop
-        setIsMobileMenuOpen(false); // [BARU] Tutup menu mobile
+        setOpenIdx(null);
+        setIsMobileMenuOpen(false);
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []); // Dependensi kosong, hanya run sekali
+  }, []);
 
-  // useEffect lainnya (click outside & scroll) tidak berubah
+  // Click outside
   useEffect(() => {
     function onDoc(e) {
       if (navRef.current && !navRef.current.contains(e.target)) setOpenIdx(null);
@@ -96,6 +96,7 @@ export default function NavBar({ useRouter = false }) {
     return () => document.removeEventListener("click", onDoc);
   }, []);
 
+  // Scroll detection
   useEffect(() => {
     function onScroll() {
       setIsScrolled(window.scrollY > 12);
@@ -105,9 +106,9 @@ export default function NavBar({ useRouter = false }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // --- Logika Style Header (Tidak Berubah) ---
+  // Logika Style Header
   const headerBaseClasses =
-    "sticky top-0 z-[200] w-full border-b py-3 backdrop-blur-sm transition-all duration-200 ease-in-out";
+    "sticky top-0 z-50 w-full border-b py-3 backdrop-blur-sm transition-all duration-200 ease-in-out";
   const headerScrollClasses = isScrolled
     ? "border-transparent bg-white/65 backdrop-blur-xl backdrop-saturate-180"
     : "border-black bg-white";
@@ -120,36 +121,39 @@ export default function NavBar({ useRouter = false }) {
       transition={{ duration: 0.5, ease: "easeOut" }}
       ref={navRef}
     >
-      <div className="container mx-auto flex items-center justify-start px-3">
-        {/* --- Brand (Tidak Berubah) --- */}
-        <div className="flex flex-shrink-0 items-center gap-4">
-          <img src={Logo} alt="Logo Jurusan" className="h-16 w-[65px] object-contain" />
-          <div className="flex flex-col leading-none">
-            <div className="font-poppins text-base font-medium text-black lg:text-lg">
+      <div className="container mx-auto flex items-center justify-between px-4 max-w-screen-2xl">
+        {/* Brand */}
+        <div className="flex shrink-0 items-center gap-3">
+          <img
+            src={Logo}
+            alt="Logo Jurusan"
+            className="h-14 w-[56px] object-contain lg:h-16 lg:w-[65px]"
+          />
+          <div className="flex flex-col leading-tight">
+            <div className="font-poppins text-xs font-medium text-black sm:text-sm lg:text-base whitespace-nowrap">
               Prodi Sistem Informasi
             </div>
-            <div className="font-poppins text-base font-medium text-black lg:text-lg">
+            <div className="font-poppins text-xs font-medium text-black sm:text-sm lg:text-base whitespace-nowrap">
               FMIPA UNTAN
             </div>
           </div>
         </div>
 
-        {/* --- Divider (Tidak Berubah) --- */}
-        <div className="ml-7 hidden h-14 w-px rounded-full bg-black lg:block" />
+        {/* Divider */}
+        <div className="ml-4 mr-4 hidden h-14 w-px rounded-full bg-black lg:block" />
 
-        {/* --- [UPDATE] Navigasi Desktop --- */}
+        {/* Navigasi Desktop */}
         <nav
-          // [UPDATE] 'hidden lg:flex' menyembunyikan ini di mobile
-          className="ml-4 hidden min-w-0 flex-1 items-center gap-3 lg:flex lg:justify-center"
+          className="hidden min-w-0 flex-1 items-center gap-2 lg:flex lg:justify-start xl:gap-3"
           aria-label="Primary Navigation"
         >
           {NAV_ITEMS.map((item, idx) => {
             const isOpen = openIdx === idx;
             return (
-              <div key={item.label} className="relative flex-shrink-0 whitespace-nowrap">
-                {/* --- Tombol Pill (Tidak Berubah) --- */}
+              <div key={item.label} className="relative shrink-0">
+                {/* Tombol Pill */}
                 <motion.button
-                  className="inline-flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-full border border-black bg-transparent px-3 py-1.5 text-base font-medium text-black transition-colors hover:bg-gray-100 lg:px-4 lg:py-2 lg:text-xl"
+                  className="inline-flex cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-full border border-black bg-transparent px-2.5 py-1.5 text-sm font-medium text-black transition-colors hover:bg-gray-100 lg:px-3 lg:py-1.5 xl:px-4 xl:py-2 xl:text-base"
                   onClick={(e) => {
                     if (item.hasDropdown) {
                       setOpenIdx(isOpen ? null : idx);
@@ -170,17 +174,17 @@ export default function NavBar({ useRouter = false }) {
                 >
                   <span>{item.label}</span>
                   {item.hasDropdown && (
-                    <span className="translate-y-px text-sm" aria-hidden>
+                    <span className="translate-y-px text-xs" aria-hidden>
                       ▾
                     </span>
                   )}
                 </motion.button>
 
-                {/* --- Dropdown Desktop (Tidak Berubah) --- */}
+                {/* Dropdown Desktop */}
                 <AnimatePresence>
                   {item.hasDropdown && isOpen && (
                     <motion.ul
-                      className="absolute left-0 top-full z-[80] mt-2.5 min-w-[220px] space-y-1.5 rounded-lg bg-white p-2 shadow-lg"
+                      className="absolute left-0 top-full z-40 mt-2.5 min-w-[220px] space-y-1.5 rounded-lg bg-white p-2 shadow-lg"
                       initial={{ opacity: 0, y: -6 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
@@ -206,12 +210,12 @@ export default function NavBar({ useRouter = false }) {
           })}
         </nav>
 
-        {/* --- [BARU] Tombol Hamburger --- */}
+        {/* Tombol Hamburger */}
         <button
-          className="ml-auto p-2 lg:hidden" // 'ml-auto' mendorong ke kanan, 'lg:hidden' tampil hanya di mobile
+          className="ml-auto p-2 lg:hidden"
           onClick={() => {
             setIsMobileMenuOpen(true);
-            setOpenIdx(null); // Tutup dropdown desktop jika ada
+            setOpenIdx(null);
           }}
           aria-label="Buka menu navigasi"
           aria-expanded={isMobileMenuOpen}
@@ -220,7 +224,7 @@ export default function NavBar({ useRouter = false }) {
         </button>
       </div>
 
-      {/* --- [BARU] Panel Menu Mobile --- */}
+      {/* Panel Menu Mobile */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -229,7 +233,7 @@ export default function NavBar({ useRouter = false }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[210] bg-black/50 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
@@ -239,30 +243,34 @@ export default function NavBar({ useRouter = false }) {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed right-0 top-0 z-[220] h-full w-[80vw] max-w-sm overflow-y-auto bg-white shadow-xl lg:hidden"
+              className="fixed right-0 top-0 z-50 h-screen w-[85vw] max-w-md overflow-y-auto bg-white shadow-xl lg:hidden"
               role="dialog"
               aria-modal="true"
               aria-label="Menu navigasi"
             >
               {/* Header Panel */}
-              <div className="flex items-center justify-between border-b p-4">
+              <div className="sticky top-0 z-10 flex items-center justify-between border-b bg-white p-4">
                 <span className="text-lg font-semibold">Menu</span>
-                <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Tutup menu">
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  aria-label="Tutup menu"
+                  className="p-2 hover:bg-gray-100 rounded-md transition-colors"
+                >
                   <CloseIcon />
                 </button>
               </div>
 
               {/* Daftar Navigasi Mobile (dengan Accordion) */}
-              <nav className="p-4">
-                <ul className="flex flex-col space-y-2">
+              <nav className="p-4 pb-8">
+                <ul className="flex flex-col space-y-3">
                   {NAV_ITEMS.map((item, idx) => (
                     <li key={item.label}>
                       {/* Jika TIDAK punya dropdown */}
                       {!item.hasDropdown ? (
                         <a
                           href={item.href}
-                          className="block rounded-md px-3 py-2 text-lg hover:bg-blue-50"
-                          onClick={() => setIsMobileMenuOpen(false)} // Tutup menu saat diklik
+                          className="block rounded-lg px-4 py-3 text-base font-medium hover:bg-blue-50 transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
                         >
                           {item.label}
                         </a>
@@ -270,7 +278,7 @@ export default function NavBar({ useRouter = false }) {
                         // Jika PUNYA dropdown (buat accordion)
                         <div>
                           <button
-                            className="flex w-full items-center justify-between rounded-md px-3 py-2 text-lg hover:bg-blue-50"
+                            className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium hover:bg-blue-50 transition-colors"
                             onClick={() =>
                               setMobileAccordionIdx(mobileAccordionIdx === idx ? null : idx)
                             }
@@ -281,7 +289,7 @@ export default function NavBar({ useRouter = false }) {
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 20 20"
                               fill="currentColor"
-                              className={`h-5 w-5 transition-transform ${
+                              className={`h-5 w-5 transition-transform duration-200 ${
                                 mobileAccordionIdx === idx ? "rotate-180" : ""
                               }`}
                             >
@@ -300,14 +308,15 @@ export default function NavBar({ useRouter = false }) {
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: "auto", opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                className="ml-4 overflow-hidden border-l border-gray-200"
+                                transition={{ duration: 0.2 }}
+                                className="mt-2 ml-4 space-y-1 overflow-hidden border-l-2 border-blue-200 pl-3"
                               >
                                 {item.items.map((sub) => (
                                   <li key={sub.label}>
                                     <a
                                       href={sub.href}
-                                      className="block rounded-r-md px-3 py-2 text-base text-gray-700 hover:bg-blue-50"
-                                      onClick={() => setIsMobileMenuOpen(false)} // Tutup menu saat diklik
+                                      className="block rounded-md px-3 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                                      onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                       {sub.label}
                                     </a>

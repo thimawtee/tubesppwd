@@ -11,11 +11,11 @@ import AlumniSection from "./components/AlumniSection";
 import Footer from "./components/Footer";
 
 import "./styles/footer.css";
-import "./styles/hero.css";
-import "./styles/profile.css";
-import "./styles/news.css";
-import "./styles/focus.css";
-import "./styles/video.css";
+// import "./styles/hero.css";
+// import "./styles/profile.css";
+// import "./styles/news.css";
+// import "./styles/focus.css";
+// import "./styles/video.css";
 import "./styles/stats.css";
 import "./styles/alumni.css";
 

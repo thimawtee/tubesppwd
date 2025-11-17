@@ -1,6 +1,6 @@
+// src/components/FocusSection.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import "../styles/focus.css";
 
 const skills = [
   {
@@ -34,11 +34,15 @@ const reveal = {
 
 export default function FocusSection() {
   return (
-    <section className="focus-section" aria-labelledby="fokus-keahlian">
-      <div className="focus-inner">
-        <div className="focus-header">
+    // .focus-section
+    <section className="w-full box-border bg-white py-12 px-8" aria-labelledby="fokus-keahlian">
+      {/* .focus-inner */}
+      <div className="max-w-[1856px] mx-auto">
+        {/* .focus-header & @media (max-width: 1100px) */}
+        <div className="mb-3 flex items-end justify-between gap-6 max-[1100px]:flex-col max-[1100px]:items-start max-[1100px]:gap-3">
+          {/* .focus-badge */}
           <motion.div
-            className="badge focus-badge"
+            className="w-fit rounded-full bg-[#2E90FA] py-4 px-7 font-['Poppins'] text-5xl font-semibold text-white"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -49,7 +53,7 @@ export default function FocusSection() {
           </motion.div>
 
           <motion.div
-            className="focus-desc"
+            className="max-w-[760px] font-['Poppins'] text-xl leading-7 text-[#080808] text-right max-[1100px]:text-left"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.45, delay: 0.06 }}
@@ -60,13 +64,14 @@ export default function FocusSection() {
           </motion.div>
         </div>
 
-        <hr className="focus-divider" />
+        <hr className="mt-4 mb-7 h-px border-0 bg-zinc-800" />
 
-        <div className="skills-grid">
+        {/* .skills-grid & @media (max-width: 1100px) */}
+        <div className="flex flex-wrap items-stretch justify-between gap-6 max-[1100px]:flex-col">
           {skills.map((s, idx) => (
             <motion.article
               key={s.id}
-              className="skill-card"
+              className="flex-1 basis-[calc(33.333%-16px)] flex min-w-[260px] flex-col gap-3 overflow-hidden rounded-[32px] box-border p-8 text-white max-[1100px]:w-full max-[1100px]:basis-auto"
               style={{ background: s.bg }}
               initial="hidden"
               whileInView="visible"
@@ -74,8 +79,12 @@ export default function FocusSection() {
               variants={reveal}
               custom={idx + 1}
             >
-              <h4 className="skill-title">{s.title}</h4>
-              <p className="skill-body">{s.body}</p>
+              {/* .skill-title */}
+              <h4 className="m-0 font-['Poppins'] text-3xl font-semibold">{s.title}</h4>
+              {/* .skill-body */}
+              <p className="m-0 font-['Poppins'] text-xl font-normal leading-7 text-justify">
+                {s.body}
+              </p>
             </motion.article>
           ))}
         </div>
