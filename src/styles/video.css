@@ -1,0 +1,213 @@
+/* src/styles/video.css — fixed alignment */
+:root {
+  --page-pad: 32px;
+  --container-w: 1856px;
+  --badge-bg: #2e90fa;
+  --text-dark: #080808;
+  --font-main: "Poppins", system-ui, sans-serif;
+}
+
+/* section */
+.video-section {
+  width: 100%;
+  background: white;
+  padding: 36px var(--page-pad);
+  box-sizing: border-box;
+}
+
+.video-inner {
+  max-width: var(--container-w);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* header */
+.video-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.video-badge {
+  background: var(--badge-bg);
+  color: #fff;
+  padding: 16px 28px;
+  border-radius: 100px;
+  font-size: 48px;
+  font-weight: 600;
+  font-family: var(--font-main);
+}
+
+/* divider */
+.video-divider {
+  height: 1px;
+  background: #222;
+  border: 0;
+  margin: 16px 0 24px 0;
+}
+
+/* ROW: use stretch so children match height */
+.video-row {
+  display: flex;
+  gap: 28px;
+  align-items: stretch; /* make children share full row height */
+  justify-content: center; /* center on wide screens */
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+/* LEFT (video) */
+.video-left {
+  flex: 0 0 48%; /* take ~half width, flexible */
+  max-width: 800px; /* control maximum width */
+  min-width: 300px; /* responsive safety */
+  height: 400px; /* explicit height so both columns match */
+  border-radius: 32px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #818181;
+  border-radius: 32px;
+  display: block;
+}
+
+/* RIGHT (description + cta) */
+.video-right {
+  flex: 0 0 48%;
+  max-width: 800px;
+  min-width: 300px;
+  height: 400px; /* same height as .video-left */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* top: card, bottom: CTA */
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+/* white card: take remaining top space */
+.video-card {
+  background: white;
+  border-radius: 18px;
+  padding: 24px;
+  outline: 1px solid #222;
+  outline-offset: -1px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  /* make card fill available vertical space (minus CTA approx 100px) */
+  height: calc(100% - 100px);
+  overflow: auto;
+}
+
+/* text style */
+.video-text {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: 28px; /* slightly smaller to fit */
+  line-height: 36px;
+  color: var(--text-dark);
+}
+
+/* CTA row at bottom */
+.video-cta-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+/* subscribe pill */
+.video-sub {
+  flex: 1 1 0;
+  height: 80px;
+  border-radius: 100px;
+  background: white;
+  outline: 1px solid #222;
+  outline-offset: -1px;
+  font-family: var(--font-main);
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease, outline-color 0.15s ease;
+}
+
+.video-sub:hover,
+.video-sub:focus {
+  background: #000;
+  color: #fff;
+  outline-color: #000;
+}
+
+/* arrow button */
+.video-arrow {
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  background: white;
+  outline: 1px solid #222;
+  outline-offset: -1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, outline-color 0.15s ease, color 0.15s ease;
+}
+
+/* allow SVG to inherit color */
+.video-arrow svg {
+  color: var(--text-dark);
+}
+.video-arrow svg path {
+  stroke: currentColor;
+}
+
+.video-arrow:hover,
+.video-arrow:focus {
+  background: #000;
+  color: #fff;
+  outline-color: #000;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .video-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .video-left,
+  .video-right {
+    flex: 0 0 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  .video-left {
+    height: 320px;
+  }
+  .video-right {
+    height: auto;
+  }
+
+  .video-card {
+    height: auto;
+    padding: 20px;
+  }
+
+  .video-text {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .video-cta-row {
+    justify-content: stretch;
+  }
+}

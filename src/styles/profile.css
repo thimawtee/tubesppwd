@@ -1,0 +1,218 @@
+/* src/styles/profile.css */
+
+/* Root variables (tweak sesuai design) */
+:root {
+  --text-dark: #080808;
+  --accent: #2e90fa;
+  --page-padding: 32px;
+  --font-main: "Poppins", system-ui, sans-serif;
+  --font-display: "Inter", system-ui, sans-serif;
+}
+
+/* Section wrapper */
+.profile-section {
+  width: 100%;
+  background: white;
+  position: relative;
+  padding: 48px var(--page-padding) 120px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* center container with max width like figma */
+.profile-inner {
+  max-width: 1856px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.profile-header {
+  display: flex; /* row: badge left, divider flex */
+  align-items: center;
+  gap: 24px;
+  margin: 0 0 24px 0; /* jarak bawah yang wajar */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* badge tetap sebelah kiri, ukuran dikontrol */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 28px; /* sedikit dikurangi */
+  background: var(--accent);
+  color: white;
+  font-family: var(--font-main);
+  font-size: 40px;
+  font-weight: 600;
+  border-radius: 100px;
+  width: auto;
+  margin: 0;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+/* main row with 3 columns */
+.profile-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  margin-top: 24px;
+}
+
+/* basic column sizing */
+.col {
+  box-sizing: border-box;
+}
+
+/* Kolom kiri: tetap 602 tapi jaga max-height agar tidak melebihi layar */
+.left-col {
+  width: 602px;
+  max-height: calc(100vh - 260px); /* batasi agar tidak overflow vertikal */
+  overflow: auto; /* scroll hanya di dalam kolom kalau perlu */
+  padding-right: 8px;
+}
+
+.lead {
+  color: var(--text-dark);
+  font-family: var(--font-main);
+  font-size: 20px;
+  line-height: 28px;
+}
+
+/* middle + right columns use same width */
+.middle-col,
+.right-col {
+  width: 602px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Oval image container: pastikan gambar mengisi container tanpa posisi translate yang salah */
+.oval-image {
+  width: 100%;
+  height: 301px;
+  border-radius: 1000px;
+  overflow: hidden;
+  position: relative;
+  background: #eee;
+}
+
+/* IMAGE fill strategy: inset 0 + object-fit cover supaya selalu pas */
+.oval-image img {
+  position: absolute;
+  inset: 0; /* shorthand top:0; right:0; bottom:0; left:0; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* mengisi container dengan crop proporsional */
+  object-position: center;
+  display: block;
+}
+
+/* Pastikan teks Kualifikasi / Akreditasi tidak mendorong layout terlalu tinggi */
+.kualifikasi,
+.akreditasi {
+  box-sizing: border-box;
+  max-height: calc(100vh - 320px);
+  overflow: auto;
+}
+
+/* kualifikasi / akreditasi text */
+.kualifikasi h3,
+.akreditasi h3 {
+  margin: 0 0 8px 0;
+  font-family: var(--font-main);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.kualifikasi p,
+.akreditasi p {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--text-dark);
+  text-align: justify;
+}
+
+.big-sisfo {
+  position: absolute;
+  left: 17px;
+  top: 120px; /* geser sedikit ke atas supaya tidak mendorong konten utama */
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+  opacity: 0.12; /* reduksi kontras supaya tidak mengganggu bacaan */
+  transform: translateZ(0);
+}
+
+/* gunakan clamp untuk ukuran agar responsive dan tidak memaksa height */
+.big-sisfo .sis,
+.big-sisfo .fo {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(120px, 30vw, 580px); /* responsive clamp */
+  color: var(--text-dark);
+  line-height: 0.85;
+  transform-origin: left top;
+}
+
+/* reduce FO weight a bit and spacing */
+.big-sisfo .fo {
+  font-weight: 400;
+  margin-left: 8px;
+}
+
+/* Pastikan semua anak profile-inner berada di atas big-sisfo */
+.profile-inner > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Kurangi padding section agar tidak bikin panjang vertikal berlebihan */
+.profile-section {
+  padding: 32px var(--page-padding) 80px; /* bottom lebih kecil */
+}
+
+/* Responsive: untuk layar sempit ubah layout menjadi column */
+@media (max-width: 1200px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .badge {
+    font-size: 36px;
+    padding: 12px 20px;
+  }
+
+  .profile-row {
+    flex-direction: column;
+  }
+
+  .left-col,
+  .middle-col,
+  .right-col {
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .big-sisfo {
+    display: none; /* sembunyikan di mobile */
+  }
+}
+
+/* Small tweak: jika divider terlihat terlalu panjang di very wide screens, batasi maks */
+@media (min-width: 2000px) {
+  .divider {
+    max-width: 1200px;
+    margin-left: 12px;
+  }
+}

@@ -1,0 +1,184 @@
+/* ================== HERO (FIGMA-EXACT) ================== */
+:root {
+  --font-family: "Poppins", system-ui, sans-serif;
+  --text-dark: #080808;
+}
+
+/* section wrapper */
+.hero-section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  padding-top: 32px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* container */
+.hero-container {
+  position: relative;
+  width: 100%;
+  max-width: 1856px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* CENTER */
+  box-sizing: border-box;
+  margin: 0 auto; /* CENTER */
+  overflow: visible;
+}
+
+/* HERO CARD (ukuran sesuai permintaan) */
+.hero-card {
+  width: 1700px;
+  height: 850px;
+  border-radius: 48px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto; /* CENTER FIX */
+}
+
+/* background image */
+.hero-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(0.95); /* kecil sedikit */
+  transform-origin: center;
+
+  border-radius: 48px; /* ikut radius hero card */
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* LEFT PANEL - EXACT FROM FIGMA */
+.hero-left-panel {
+  position: absolute;
+  left: 60px;
+  top: 35px;
+  width: 739px;
+  height: 733px;
+  padding: 24px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+/* inner blur card */
+.hero-left-inner {
+  width: 100%;
+  height: calc(100% - 36px);
+  padding: 24px;
+
+  background: rgba(28, 86, 150, 0.5);
+  border-radius: 32px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  /* blur */
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  isolation: isolate;
+}
+
+/* text block top */
+.hero-welcome {
+  width: 100%;
+  color: white;
+  font-family: var(--font-family);
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 60px;
+  word-wrap: break-word;
+}
+
+/* vertical divider */
+.hero-divider-vertical {
+  width: 4px;
+  height: 197px;
+  background: white;
+  border-radius: 24px;
+}
+
+/* text bottom */
+.hero-program {
+  width: 100%;
+  color: white;
+  font-family: var(--font-family);
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 60px;
+  word-wrap: break-word;
+}
+
+/* big title under card */
+.hero-big-title {
+  width: 100%;
+  font-family: var(--font-family);
+  font-size: 64px;
+  font-weight: 400;
+  color: var(--text-dark);
+  text-align: center;
+  line-height: 60px;
+}
+
+/* =====================================
+   RESPONSIVE ADAPTATION (safe)
+   ===================================== */
+@media (max-width: 1900px) {
+  .hero-container {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 980px) {
+  .hero-card {
+    width: calc(100% - 64px);
+    height: auto;
+    border-radius: 20px;
+  }
+
+  .hero-image {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    top: 0;
+    left: 0;
+  }
+
+  .hero-left-panel {
+    position: relative;
+    width: 86%;
+    height: auto;
+    margin: -120px auto 0;
+  }
+
+  .hero-welcome,
+  .hero-program {
+    font-size: clamp(18px, 4vw, 38px);
+    text-align: center;
+  }
+
+  .hero-divider-vertical {
+    display: none;
+  }
+
+  .hero-big-title {
+    font-size: 36px;
+    width: 100%;
+  }
+}

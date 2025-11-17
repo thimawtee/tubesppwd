@@ -1,0 +1,275 @@
+/* src/styles/news.css (UPDATED) */
+:root {
+  --text-dark: #080808;
+  --muted: #464646;
+  --accent: #2e90fa;
+  --container-w: 1856px;
+  --page-pad: 32px;
+  --font-main: "Poppins", system-ui, sans-serif;
+}
+
+/* section */
+.news-section {
+  margin-top: 64px;
+  width: 100%;
+  background: white;
+  position: relative;
+  padding: 48px var(--page-pad) 72px;
+  box-sizing: border-box;
+}
+
+.news-inner {
+  max-width: var(--container-w);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* header */
+.news-header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 8px;
+}
+
+.news-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 32px;
+  background: var(--accent);
+  color: white;
+  font-family: var(--font-main);
+  font-size: 48px;
+  font-weight: 600;
+  border-radius: 100px;
+  width: fit-content;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: #222;
+  opacity: 0.85;
+}
+
+/* list area */
+.news-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* separators handled per-item */
+}
+
+/* single item row (3-column) */
+.news-item {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  padding: 24px 0; /* vertical padding */
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+/* separator: draw a thin line ABOVE each item except the first */
+.news-item + .news-item {
+  border-top: 1px solid #222;
+  padding-top: 28px; /* extra breathing room after separator */
+}
+
+/* left image column */
+.news-left {
+  width: 603px;
+  min-width: 603px;
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.oval-news {
+  width: 603px;
+  height: 339.19px;
+  border-radius: 1000px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* fix cropping: make img fill the oval properly */
+.oval-news img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fill the oval without deformation */
+  object-position: center;
+  display: block;
+}
+
+/* center title column */
+.news-center {
+  width: 602px;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.news-title {
+  font-family: var(--font-main);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.05;
+}
+
+/* right excerpt + cta column */
+.news-right {
+  width: 603px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.news-excerpt {
+  color: var(--muted);
+  font-family: var(--font-main);
+  font-size: 20px;
+  line-height: 28px;
+  margin: 0;
+  height: 224px; /* match Figma block height */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* CTA row */
+.cta-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* big pill button (read) - default white with dark outline */
+.cta-read {
+  flex: 1 1 0;
+  height: 80px;
+  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  border-radius: 100px;
+  background: white;
+  outline: 1px solid var(--text-dark);
+  outline-offset: -1px;
+  font-family: var(--font-main);
+  font-size: 20px;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, outline-color 0.18s ease;
+}
+
+/* on hover: become black background, white text */
+.cta-read:hover,
+.cta-read:focus {
+  background: #000;
+  color: #fff;
+  outline-color: #000;
+}
+
+/* circular arrow button */
+.cta-arrow {
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  outline: 1px solid var(--text-dark);
+  outline-offset: -1px;
+  cursor: pointer;
+  transition: background 0.18s ease, outline-color 0.18s ease;
+}
+
+/* svg inside arrow should inherit stroke via currentColor */
+.cta-arrow svg {
+  color: var(--text-dark);
+}
+.cta-arrow svg path {
+  stroke: currentColor;
+}
+
+/* arrow hover: black bg + white icon */
+.cta-arrow:hover,
+.cta-arrow:focus {
+  background: #000;
+  outline-color: #000;
+  color: #fff;
+}
+
+/* thin horizontal divider after multiple items (visual) -- keep for optional separation */
+.list-divider {
+  display: none; /* no longer used; visual separators are per-item */
+}
+
+/* footer */
+.news-footer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 12px;
+}
+
+/* full-width variant for footer button */
+.cta-full {
+  flex: 1 1 0;
+  justify-content: center;
+  text-align: center;
+}
+
+/* footer hover same as read button */
+.news-footer .cta-read.cta-full:hover,
+.news-footer .cta-read.cta-full:focus {
+  background: #000;
+  color: #fff;
+  outline-color: #000;
+}
+
+/* responsive tweaks */
+@media (max-width: 1200px) {
+  .news-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .news-left,
+  .news-center,
+  .news-right {
+    width: 100%;
+    min-width: 0;
+  }
+  .oval-news {
+    height: 220px;
+  }
+  .oval-news img {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+  .news-excerpt {
+    height: auto;
+  }
+  /* separators full width on small screens */
+  .news-item + .news-item {
+    border-top: 1px solid #222;
+    padding-top: 20px;
+  }
+  .news-footer {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

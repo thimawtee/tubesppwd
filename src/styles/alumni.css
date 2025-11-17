@@ -1,0 +1,327 @@
+/* alumni.css */
+
+.alumni-section {
+  width: 100%;
+  background: white;
+  padding: 74px 0 60px;
+  box-sizing: border-box;
+}
+
+.alumni-container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Header Section */
+.alumni-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.alumni-title-badge {
+  background: #2e90fa;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 100px;
+  font-family: "Poppins", sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alumni-description {
+  width: 445px;
+  color: #080808;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  text-align: right;
+  margin: 0;
+}
+
+/* Divider Line */
+.alumni-divider {
+  width: 100%;
+  height: 1px;
+  background: black;
+  opacity: 0.2;
+}
+
+/* Cards Wrapper */
+.alumni-cards-wrapper {
+  position: relative;
+  width: 100%;
+  height: 680px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: -50px;
+}
+
+/* Base Card Style - SEMUA SAMA, CUMA BEDA ROTATION */
+.alumni-card {
+  width: 627px;
+  height: 603px;
+  padding: 32px;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform-origin: center center;
+}
+
+/* Rotation untuk setiap card - UBAH DI SINI */
+.alumni-card:nth-child(1) {
+  transform: rotate(3deg) !important;
+}
+
+.alumni-card:nth-child(2) {
+  transform: rotate(-3deg) !important;
+}
+
+.alumni-card:nth-child(3) {
+  transform: rotate(1deg) !important;
+}
+
+/* Hover effect - kembali ke posisi normal */
+.alumni-card:hover {
+  transform: rotate(0deg) scale(1.03) !important;
+}
+
+/* Card Header (Profile Section) */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.avatar-container {
+  width: 84.56px;
+  height: 84.56px;
+  background: white;
+  border-radius: 1000px;
+  outline: 4px solid white;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.profile-name {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+  margin: 0;
+}
+
+.profile-title {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  margin: 0;
+}
+
+/* Quote Section */
+.card-quote {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  margin: 0;
+}
+
+/* Action Buttons */
+.alumni-actions {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 0;
+}
+
+.btn-see-more {
+  flex: 1;
+  height: 80px;
+  padding: 24px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 100px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-see-more span {
+  color: #080808;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.btn-see-more:hover {
+  background: #f5f5f5;
+}
+
+.btn-icon {
+  width: 80px;
+  height: 80px;
+  padding: 24px;
+  background: white;
+  border: 1px solid black;
+  border-left: none;
+  border-radius: 100px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-icon svg {
+  color: #080808;
+}
+
+.btn-icon:hover {
+  background: #f5f5f5;
+}
+
+/* Responsive Design */
+@media (max-width: 1900px) {
+  .alumni-cards-wrapper {
+    gap: 10px;
+  }
+
+  .alumni-card {
+    width: 550px;
+    height: 530px;
+  }
+
+  .profile-name {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .card-quote {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .alumni-cards-wrapper {
+    height: auto;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .alumni-card {
+    width: 100%;
+    max-width: 627px;
+  }
+}
+
+@media (max-width: 768px) {
+  .alumni-section {
+    padding: 40px 0;
+  }
+
+  .alumni-container {
+    padding: 0 20px;
+    gap: 24px;
+  }
+
+  .alumni-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .alumni-title-badge {
+    font-size: 32px;
+    line-height: 40px;
+    padding: 12px 24px;
+  }
+
+  .alumni-description {
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .alumni-card {
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+    padding: 24px;
+  }
+
+  .profile-name {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .profile-title {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .card-quote {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .btn-see-more span {
+    font-size: 16px;
+  }
+
+  .btn-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .btn-see-more {
+    height: 60px;
+  }
+}
