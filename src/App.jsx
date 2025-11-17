@@ -9,9 +9,8 @@ import VideoSection from "./components/VideoSection";
 import StatsSection from "./components/StatsSection";
 import AlumniSection from "./components/AlumniSection";
 import Footer from "./components/Footer";
-import "./styles/footer.css";
 
-import "./styles/nav.css";
+import "./styles/footer.css";
 import "./styles/hero.css";
 import "./styles/profile.css";
 import "./styles/news.css";

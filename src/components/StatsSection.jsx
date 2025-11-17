@@ -51,7 +51,7 @@ export default function StatsSection() {
 
           {/* Label Lususan (Left of bubble) */}
           <div className="stats-label label-graduates">
-            <div className="label-text label-graduates-text">Lususan</div>
+            <div className="label-text label-graduates-text">Lulusan</div>
             <div className="label-line" />
           </div>
 
