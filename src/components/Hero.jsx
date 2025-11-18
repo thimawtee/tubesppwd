@@ -19,7 +19,7 @@ export default function Hero() {
       >
         {/* Hero Card - Desktop & Tablet */}
         <div
-          className="relative h-[850px] w-[1700px] scale-75 overflow-hidden rounded-[48px] hidden lg:block"
+          className="relative h-[850px] w-[1700px] scale-75 -mt-16 overflow-hidden rounded-[48px] hidden lg:block"
           role="img"
           aria-label="Gedung fakultas dan taman"
         >
