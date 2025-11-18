@@ -61,28 +61,6 @@ export default function Footer() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col gap-3">
-            {links.map((l, i) => (
-              <div
-                key={`l2-${i}`}
-                className="font-medium text-xl text-white"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
-                {l}
-              </div>
-            ))}
-          </div>
-          <div className="flex flex-col gap-3 md:col-span-2 lg:col-span-1">
-            {links.map((l, i) => (
-              <div
-                key={`l3-${i}`}
-                className="font-medium text-xl text-white"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
-                {l}
-              </div>
-            ))}
-          </div>
         </motion.div>
 
         {/* Mobile Link Area - Accordion Style */}
