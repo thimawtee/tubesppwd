@@ -1,7 +1,5 @@
-// src/components/NavBar.jsx
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Logo from "../assets/Logo.png";
 
 // --- Icon untuk Hamburger dan Close ---
 const HamburgerIcon = () => (
@@ -108,7 +106,7 @@ export default function NavBar({ useRouter = false }) {
 
   // Logika Style Header
   const headerBaseClasses =
-    "sticky top-0 z-50 w-full border-b py-3 backdrop-blur-sm transition-all duration-200 ease-in-out";
+    "sticky top-0 z-50 w-full border-b py-2.5 backdrop-blur-sm transition-all duration-200 ease-in-out";
   const headerScrollClasses = isScrolled
     ? "border-transparent bg-white/65 backdrop-blur-xl backdrop-saturate-180"
     : "border-black bg-white";
@@ -123,37 +121,44 @@ export default function NavBar({ useRouter = false }) {
     >
       <div className="container mx-auto flex items-center justify-between px-4 max-w-screen-2xl">
         {/* Brand */}
-        <div className="flex shrink-0 items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2.5">
           <img
-            src={Logo}
+            src="https://res.cloudinary.com/symphony24/image/upload/w_50,h_50,c_fill/Logo_mivnro.png"
             alt="Logo Jurusan"
-            className="h-14 w-[56px] object-contain lg:h-16 lg:w-[65px]"
+            className="h-11 w-11 object-contain lg:h-12 lg:w-12"
           />
           <div className="flex flex-col leading-tight">
-            <div className="font-poppins text-xs font-medium text-black sm:text-sm lg:text-base whitespace-nowrap">
+            <div
+              className="text-[11px] font-medium text-black sm:text-xs lg:text-sm whitespace-nowrap gap-4"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
               Prodi Sistem Informasi
             </div>
-            <div className="font-poppins text-xs font-medium text-black sm:text-sm lg:text-base whitespace-nowrap">
+            <div
+              className="text-[11px] font-medium text-black sm:text-xs lg:text-sm whitespace-nowrap"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
               FMIPA UNTAN
             </div>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="ml-4 mr-4 hidden h-14 w-px rounded-full bg-black lg:block" />
+        <div className="ml-3 mr-3 hidden h-11 w-px rounded-full bg-black lg:block" />
 
         {/* Navigasi Desktop */}
         <nav
-          className="hidden min-w-0 flex-1 items-center gap-2 lg:flex lg:justify-start xl:gap-3"
+          className="hidden min-w-0 flex-1 items-center gap-1.5 lg:flex lg:justify-center"
           aria-label="Primary Navigation"
         >
           {NAV_ITEMS.map((item, idx) => {
             const isOpen = openIdx === idx;
             return (
-              <div key={item.label} className="relative shrink-0">
+              <div key={item.label} className="relative shrink-0 gap-3">
                 {/* Tombol Pill */}
                 <motion.button
-                  className="inline-flex cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-full border border-black bg-transparent px-2.5 py-1.5 text-sm font-medium text-black transition-colors hover:bg-gray-100 lg:px-3 lg:py-1.5 xl:px-4 xl:py-2 xl:text-base"
+                  className="inline-flex cursor-pointer items-center gap-1 whitespace-nowrap rounded-full border border-black bg-transparent px-2.5 py-1.5 text-xs font-medium text-black transition-colors hover:bg-gray-100 lg:text-[13px]"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
                   onClick={(e) => {
                     if (item.hasDropdown) {
                       setOpenIdx(isOpen ? null : idx);
@@ -174,7 +179,7 @@ export default function NavBar({ useRouter = false }) {
                 >
                   <span>{item.label}</span>
                   {item.hasDropdown && (
-                    <span className="translate-y-px text-xs" aria-hidden>
+                    <span className="translate-y-px text-[10px]" aria-hidden="true">
                       ▾
                     </span>
                   )}
@@ -184,7 +189,7 @@ export default function NavBar({ useRouter = false }) {
                 <AnimatePresence>
                   {item.hasDropdown && isOpen && (
                     <motion.ul
-                      className="absolute left-0 top-full z-40 mt-2.5 min-w-[220px] space-y-1.5 rounded-lg bg-white p-2 shadow-lg"
+                      className="absolute left-0 top-full z-40 mt-2 min-w-[200px] space-y-1 rounded-lg bg-white p-2 shadow-lg"
                       initial={{ opacity: 0, y: -6 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
@@ -196,7 +201,8 @@ export default function NavBar({ useRouter = false }) {
                           <a
                             href={sub.href}
                             onClick={() => setOpenIdx(null)}
-                            className="block rounded-md px-3 py-2 text-black no-underline hover:bg-blue-50 focus:bg-blue-50 focus:outline-none"
+                            className="block rounded-md px-3 py-2 text-sm text-black no-underline hover:bg-blue-50 focus:bg-blue-50 focus:outline-none"
+                            style={{ fontFamily: "Poppins, sans-serif" }}
                           >
                             {sub.label}
                           </a>
@@ -250,7 +256,12 @@ export default function NavBar({ useRouter = false }) {
             >
               {/* Header Panel */}
               <div className="sticky top-0 z-10 flex items-center justify-between border-b bg-white p-4">
-                <span className="text-lg font-semibold">Menu</span>
+                <span
+                  className="text-lg font-semibold"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Menu
+                </span>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
                   aria-label="Tutup menu"
@@ -270,6 +281,7 @@ export default function NavBar({ useRouter = false }) {
                         <a
                           href={item.href}
                           className="block rounded-lg px-4 py-3 text-base font-medium hover:bg-blue-50 transition-colors"
+                          style={{ fontFamily: "Poppins, sans-serif" }}
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           {item.label}
@@ -279,6 +291,7 @@ export default function NavBar({ useRouter = false }) {
                         <div>
                           <button
                             className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium hover:bg-blue-50 transition-colors"
+                            style={{ fontFamily: "Poppins, sans-serif" }}
                             onClick={() =>
                               setMobileAccordionIdx(mobileAccordionIdx === idx ? null : idx)
                             }
@@ -316,6 +329,7 @@ export default function NavBar({ useRouter = false }) {
                                     <a
                                       href={sub.href}
                                       className="block rounded-md px-3 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors"
+                                      style={{ fontFamily: "Poppins, sans-serif" }}
                                       onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                       {sub.label}
