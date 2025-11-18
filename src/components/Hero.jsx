@@ -2,6 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 
 export default function Hero() {
+  // URL Cloudinary yang sudah dioptimasi
+  const optimizedHeroUrl =
+    "https://res.cloudinary.com/symphony24/image/upload/f_auto,q_auto/v1763420358/hero_gmrv6x.png";
+
   return (
     <section
       className="flex w-full min-h-screen justify-center overflow-hidden bg-white pt-8 pb-5"
@@ -15,21 +19,23 @@ export default function Hero() {
       >
         {/* Hero Card - Desktop & Tablet */}
         <div
-          className="relative mx-auto h-[850px] w-[1700px] overflow-hidden rounded-[48px] hidden lg:block"
+          className="relative mx-auto h-[850px] w-[1700px] scale-80 transform-origin-top overflow-hidden rounded-[48px] hidden lg:block"
           role="img"
           aria-label="Gedung fakultas dan taman"
         >
           {/* Background Image */}
           <img
-            className="pointer-events-none absolute top-0 left-0 h-full w-full select-none rounded-[48px] object-cover object-center scale-95"
-            src="https://res.cloudinary.com/symphony24/image/upload/v1763420358/hero_gmrv6x.png"
+            // [PERUBAHAN] src diganti ke URL optimasi + lazy loading
+            className="pointer-events-none absolute top-0 left-0 h-full w-full select-none rounded-[48px] object-cover object-center"
+            src={optimizedHeroUrl}
             alt="Gedung Prodi Sistem Informasi"
+            loading="lazy" // <-- LAZY LOADING DITAMBAHKAN
             onError={(e) => {
               e.currentTarget.src = "https://placehold.co/1861x1241";
             }}
           />
 
-          {/* Left Panel */}
+          {/* Left Panel (Tidak berubah, akan ikut mengecil karena parent-nya di-scale) */}
           <div
             className="absolute top-[35px] left-[60px] inline-flex h-[733px] w-[739px] flex-col items-center justify-center gap-2.5 p-6"
             aria-hidden="false"
@@ -67,15 +73,16 @@ export default function Hero() {
           <div className="w-full rounded-3xl overflow-hidden">
             <img
               className="w-full h-[220px] object-cover object-center"
-              src="https://res.cloudinary.com/symphony24/image/upload/v1763420358/hero_gmrv6x.png"
+              src={optimizedHeroUrl}
               alt="Gedung Prodi Sistem Informasi"
+              loading="lazy" // <-- LAZY LOADING DITAMBAHKAN
               onError={(e) => {
                 e.currentTarget.src = "https://placehold.co/800x600";
               }}
             />
           </div>
 
-          {/* Content Card */}
+          {/* Content Card (Tidak berubah) */}
           <div className="w-full rounded-3xl bg-[#1C5696] p-6 flex flex-col gap-4 items-center text-center">
             {/* Welcome Text */}
             <div
@@ -98,7 +105,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Tagline */}
+        {/* Tagline (Tidak berubah) */}
         <h2
           id="hero-title"
           className="mt-16 w-full text-center font-normal leading-[60px] text-[#080808] lg:mt-16 lg:text-[64px] md:text-5xl sm:text-3xl sm:mt-8 sm:leading-tight px-4"
