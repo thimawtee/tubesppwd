@@ -1,0 +1,27 @@
+# DEVELOPMENT image — use glibc-based Node to avoid binary issues (esbuild/@swc)
+FROM node:22-bullseye
+
+# Create workdir and ensure non-root user later if needed
+WORKDIR /app
+
+# Avoid interactive prompts for tzdata etc.
+ENV DEBIAN_FRONTEND=noninteractive
+
+# copy only lockfiles first to leverage Docker cache for deps
+COPY package.json package-lock.json* ./
+
+# install deps (use npm ci for reproducible install)
+RUN npm ci --silent
+
+# ← TAMBAH INI: Copy tailwind & postcss config
+COPY tailwind.config.js postcss.config.js ./
+
+# ← TAMBAH INI: Copy src untuk build initial Tailwind
+COPY src ./src
+COPY index.html ./
+
+# Expose Vite default port
+EXPOSE 5173
+
+# Run dev server and bind to 0.0.0.0 for container access
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

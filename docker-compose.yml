@@ -1,0 +1,15 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./:/app:cached # mount code (edit on host -> reflected in container)
+      - /app/node_modules # anonymous volume so container node_modules not overwritten by host
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=development
+    # use small restart policy during dev
+    restart: "no"
