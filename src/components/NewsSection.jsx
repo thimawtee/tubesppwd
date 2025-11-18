@@ -14,10 +14,10 @@ const newsData = [
   },
   {
     id: 2,
-    title: "Prestasi Lomba Gema Ekonomi Syariah Kalimantan Barat",
+    title: "Lomba Sawit Sukses",
     excerpt:
       "Selamat Atas Prestasinya Farahdiba Helwa Latifah Mahasiswa Sistem Informasi Angkatan 2021 yang telah meraih juara 2 lomba Gebyar Kalbar 2024 dengan Tema Gema Ekonomi Syariah... ",
-    img: "/src/assets/news2.png",
+    img: "https://res.cloudinary.com/dxqr70knp/image/upload/v1763434897/DSC09958_2_pltwuu.jpg",
   },
   {
     id: 3,
