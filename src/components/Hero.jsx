@@ -8,7 +8,7 @@ export default function Hero() {
 
   return (
     <section
-      className="flex w-full min-h-screen justify-center overflow-hidden bg-white pt-8 pb-5"
+      className="flex w-full min-h-screen justify-center overflow-hidden bg-white pb-5"
       aria-labelledby="hero-title"
     >
       <motion.div
