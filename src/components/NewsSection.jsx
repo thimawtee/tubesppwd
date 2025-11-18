@@ -21,8 +21,7 @@ const newsData = [
   },
   {
     id: 3,
-    title:
-      "PKM(Pengabdian Kepada Masyarakat), “Upaya peningkatan pembuatan media pembelajaran melalui pelatihan canva dan artificial intelegence (AI) bagi guru Smp Negri 2 Ngabang",
+    title: "PKM(Pengabdian Kepada Masyarakat)",
     excerpt:
       "Selamat Atas Prestasinya Farahdiba Helwa Latifah Mahasiswa Sistem Informasi Angkatan 2021 yang telah meraih juara 2 lomba Gebyar Kalbar 2024 dengan Tema Gema Ekonomi Syariah... ",
     img: "https://res.cloudinary.com/dxqr70knp/image/upload/v1763435179/IMG_2667-300x225_xmoveg.png",
